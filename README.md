@@ -1,138 +1,46 @@
-[![Build Status](https://travis-ci.org/k-tamura/easybuggy.svg?branch=master)](https://travis-ci.org/k-tamura/easybuggy)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![GitHub release](https://img.shields.io/github/release/k-tamura/easybuggy.svg)](https://github.com/k-tamura/easybuggy/releases/latest)
+# ABC Corp Dockerized Web App
 
-EasyBuggy Vulnerable Web App Modified by A Security Guru :baby_symbol:
-=
+Welcome to the ABC Corp Dockerized Web App! This educational application is designed to provide an interactive and engaging learning experience for users of all ages. This README file will guide you through the setup, usage, and maintenance of the application.
 
-EasyBuggy is a broken web application in order to understand behavior of bugs and vulnerabilities, for example, [memory leak, deadlock, JVM crash, SQL injection and so on](https://github.com/k-tamura/easybuggy#clock4-easybuggy-can-reproduce).
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Security Best Practices](#security-best-practices)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-![logo](https://raw.githubusercontent.com/wiki/k-tamura/easybuggy/images/mov_eb.gif)
+## Project Overview
+The ABC Corp Dockerized Web App is a containerized application built using Docker. It leverages modern web technologies to deliver educational content and interactive activities. The application is designed to be easily deployable and scalable, making it suitable for both small and large educational institutions.
 
-:clock4: Quick Start
--
+## Features
+- **Interactive Lessons**: Engaging and interactive lessons across various subjects.
+- **User Management**: Secure user authentication and management.
+- **Progress Tracking**: Track user progress and performance.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Scalable Architecture**: Easily scalable using Docker and Docker Compose.
 
-    $ mvn clean install
+## Prerequisites
+Before you begin, ensure you have the following installed on your machine:
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-( or ``` java -jar easybuggy.jar ``` or deploy ROOT.war on your servlet container with [the JVM options](https://github.com/k-tamura/easybuggy/blob/master/pom.xml#L204). )
+## Installation
+Follow these steps to set up the ABC Corp Dockerized Web App on your local machine.
 
-Access to
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/ABCCorp/edu-app.git
+```
+### Step 2: Run Docker compose
+```bash
+docker-compose build
+docker-compose up -d
+```
+### Step 3: Access the web application
+Open your web browser and navigate to http://localhost:8000
 
-    http://localhost:8080
-
-:clock4: Quick Start(Docker)
--
-
-    $ docker build . -t easybuggy:local # Build container image
-    $ docker run -p 8080:8080 easybuggy:local # Start easybuggy
-
-Access to
-
-    http://localhost:8080
-
-### To stop:
-
-  Use <kbd>CTRL</kbd>+<kbd>C</kbd> ( or access to: http://localhost:8080/exit )
-
-:clock4: For more detail
--
-   
-See [the wiki page](https://github.com/k-tamura/easybuggy/wiki).
-
-:clock4: Demo
--
-
-This demo shows: Start up -> Infinite Loop -> LDAP Injection -> UnsatisfiedLinkError -> BufferOverflowException -> Deadlock -> Memory Leak -> JVM Crash (Shut down)
-
-![demo](https://github.com/k-tamura/easybuggy/blob/master/demo_eb.gif)
-
-:clock4: EasyBuggy can reproduce:
--
-
-* Troubles
-
-  * Memory Leak (Java heap space)
-  * Memory Leak (PermGen space)
-  * Memory Leak (C heap space)
-  * Deadlock (Java)
-  * Deadlock (SQL)
-  * Endless Waiting Process
-  * Infinite Loop
-  * Redirect Loop
-  * Forward Loop
-  * JVM Crash
-  * Network Socket Leak
-  * Database Connection Leak
-  * File Descriptor Leak 
-  * Thread Leak 
-  * Mojibake
-  * Integer Overflow
-  * Round Off Error
-  * Truncation Error
-  * Loss of Trailing Digits
-
-* Vulnerabilities
-
-  * XSS (Cross-Site Scripting)
-  * SQL Injection
-  * LDAP Injection
-  * Code Injection
-  * OS Command Injection (OGNL Expression Injection)
-  * Mail Header Injection
-  * Null Byte Injection
-  * Extension Unrestricted File Upload
-  * Size Unrestricted File Upload
-  * Open Redirect
-  * Brute-force Attack
-  * Session Fixation Attacks
-  * Verbose Login Error Messages
-  * Dangerous File Inclusion
-  * Directory Traversal
-  * Unintended File Disclosure
-  * CSRF (Cross-Site Request Forgery)
-  * XEE (XML Entity Expansion)
-  * XXE (XML eXternal Entity)
-  * Clickjacking
-
-* Performance Degradation
-
-  * Slow Regular Expression Parsing
-  * Delay of creating string due to +(plus) operator
-  * Delay due to unnecessary object creation
-
-* Errors
-
-  * AssertionError
-  * ExceptionInInitializerError
-  * FactoryConfigurationError
-  * GenericSignatureFormatError
-  * NoClassDefFoundError
-  * OutOfMemoryError (Java heap space) 
-  * OutOfMemoryError (Requested array size exceeds VM limit)
-  * OutOfMemoryError (unable to create new native thread)
-  * OutOfMemoryError (GC overhead limit exceeded)
-  * OutOfMemoryError (PermGen space)
-  * OutOfMemoryError (Direct buffer memory)
-  * StackOverflowError
-  * TransformerFactoryConfigurationError
-  * UnsatisfiedLinkError
-
-:clock4: EasyBuggy clones:
--
-* [EasyBuggy Boot](https://github.com/k-tamura/easybuggy4sb)
-
-  EasyBuggy clone build on Spring Boot
-
-  ![logo](https://raw.githubusercontent.com/wiki/k-tamura/easybuggy/images/mov_ebsb.gif)
-
-* [EasyBuggy Bootlin](https://github.com/k-tamura/easybuggy4kt)
-
-  EasyBuggy clone build on Spring Boot and written in Kotlin
-
-  ![logo](https://raw.githubusercontent.com/wiki/k-tamura/easybuggy/images/mov_ebkt.gif)
-
-* [EasyBuggy Django](https://github.com/k-tamura/easybuggy4django)
-
-  EasyBuggy clone build on Django 2 and written in Python
-
-  　![logo](https://github.com/k-tamura/easybuggy4django/blob/master/static/easybuggy.png)
